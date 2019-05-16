@@ -23,10 +23,14 @@ import Markdown from '../components/markdown.vue'
 import TurbolinksAdapter from 'vue-turbolinks';
 Vue.use(TurbolinksAdapter)
 
+import moment from 'moment'
+
+Vue.filter('date', time => moment(time).format('MM/DD/YY, HH:mm'))
+
 document.addEventListener('turbolinks:load', () => {
   console.log('here');
   const app = new Vue({
-    el: '#notebook',
+    el: '#notebook-component',
     components: { Markdown }
   })
   console.log('restored note:', localStorage.getItem('content'))
